@@ -21,7 +21,7 @@ function onTrigger(player,npc)
 
     if (player:needToZone()) then
         player:startEvent(127); -- chat about my work
-    elseif (pFame < 2 and momTheAdventurer ~= QUEST_ACCEPTED and questStatus == 0) then
+    elseif (momTheAdventurer == QUEST_AVAILABLE or (pFame < 2 and momTheAdventurer ~= QUEST_ACCEPTED and questStatus == 0)) then
         player:startEvent(230);
     elseif (momTheAdventurer >= QUEST_ACCEPTED and questStatus == 2) then
         if (player:seenKeyItem(dsp.ki.LETTER_FROM_ROH_LATTEH)) then
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(231);
         end
-    elseif (pFame >= 2 and player:getQuestStatus(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT) == QUEST_AVAILABLE) then
+    elseif (momTheAdventurer == QUEST_COMPLETED and pFame >= 2 and player:getQuestStatus(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT) == QUEST_AVAILABLE) then
         player:startEvent(235);
     else
         player:startEvent(127);
